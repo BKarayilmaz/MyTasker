@@ -53,6 +53,15 @@ namespace MyTasker.API.Controllers
             return BadRequest();
            
         }
+        [HttpGet("GetThisMonthTaskCount")]
+        public async Task<IActionResult> GetThisMonthTaskCount()
+        {
+            var date=DateTime.Now;
+            var dateMin = new DateTime(date.Year, date.Month, 1);
+            var dateMax = new DateTime(date.Year, date.Month + 1, 1).AddDays(-1);
+            var result = await _taskModelRepository.GetCountAsync(x => x.TaskDate >= dateMin&& x.TaskDate <= dateMax);
+            return Ok(result);
+        }
         [HttpGet("id")]
         public async Task<IActionResult> GetTask(int id)
         {

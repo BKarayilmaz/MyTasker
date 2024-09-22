@@ -23,5 +23,7 @@ namespace MyTasker.Mobile
             var model = await HttpClientHelper.SendAsync<SettingsModel>(BaseUrl + "/Settings", HttpMethod.Get);
             UserAppTheme = model.Theme == MyTaskTheme.Dark ? AppTheme.Dark : AppTheme.Light;
         }
+
+        
     }
 }

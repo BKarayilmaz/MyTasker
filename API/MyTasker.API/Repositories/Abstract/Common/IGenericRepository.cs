@@ -8,6 +8,7 @@ namespace MyTasker.API.Repositories.Abstract.Common
     {
         DbSet<T> Table {  get; }
         Task<int> SaveAsync();
+        int Save();
         Task<List<T>?> GetAllAsync();
         Task<List<T>?> GetAllAsync(Expression<Func<T,bool>>filter);
         Task<T?> GetSingleAsync(Expression<Func<T,bool>>filter);

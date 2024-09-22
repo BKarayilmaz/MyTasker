@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using MyTasker.Mobile.Views;
+using MyTasker.Mobile.ViewModel;
+using UraniumUI;
 
 namespace MyTasker.Mobile
 {
@@ -12,6 +14,8 @@ namespace MyTasker.Mobile
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseUraniumUI()
+                .UseUraniumUIMaterial()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -25,8 +29,17 @@ namespace MyTasker.Mobile
             builder.Services.AddTransient<ListTaskPage>();
             builder.Services.AddTransient<ListTaskWithStatus>();
             builder.Services.AddTransient<SettingsPage>();
+
+            builder.Services.AddTransient<AddTaskViewModel>();
+            builder.Services.AddTransient<DeletedTaskViewModel>();
+            builder.Services.AddTransient<DetailTaskViewModel>();
+            builder.Services.AddTransient<FavoriteTaskViewModel>();
+            builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<ListTaskViewModel>();
+            builder.Services.AddTransient<ListTaskWithStatusViewModel>();
+            builder.Services.AddTransient<SettingsViewModel>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
