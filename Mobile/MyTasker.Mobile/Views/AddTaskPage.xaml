@@ -13,7 +13,6 @@
                 AccentColor="Red" 
                 AllowClear="False" 
                 Date="{Binding Date}" 
-                TitleColor="Black" 
                 Padding="0,10,10,0" 
                 WidthRequest="185"/>
             <material:TimePickerField 
@@ -22,12 +21,14 @@
                 AccentColor="Red" 
                 AllowClear="False" 
                 Time="{Binding Time}" 
-                TitleColor="Black" 
                 Padding="10,10,0,0" 
                 WidthRequest="185"/>
         </HorizontalStackLayout>
-        <material:EditorField Title="Content" AccentColor="Red" TitleColor="Black" Text="{Binding Content}"/>
-        <Frame BorderColor="LightGray" HeightRequest="100">
+        <material:EditorField Title="Content" AccentColor="Red" Text="{Binding Content}"/>
+        <Frame BackgroundColor="{AppThemeBinding Light={StaticResource White},
+                                              Dark={StaticResource Black}}"
+            BorderColor="{AppThemeBinding Light=LightGray,
+                                          Dark=DarkGray}" HeightRequest="100">
             <VerticalStackLayout Spacing="-5">
                 <Label Padding="0,-5,0,5" FontSize="Small"
                        Text="Color"/>

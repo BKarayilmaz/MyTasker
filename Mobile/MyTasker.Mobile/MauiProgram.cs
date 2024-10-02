@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using MyTasker.Mobile.Views;
 using MyTasker.Mobile.ViewModel;
 using UraniumUI;
+using Plugin.LocalNotification;
 
 namespace MyTasker.Mobile
 {
@@ -16,6 +17,7 @@ namespace MyTasker.Mobile
                 .UseMauiCommunityToolkit()
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

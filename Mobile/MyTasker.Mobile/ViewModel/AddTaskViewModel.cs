@@ -1,9 +1,11 @@
-﻿using CommunityToolkit.Maui.Alerts;
+﻿//using Android.Media;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FmgLib.HttpClientHelper;
 using MyTasker.Core.Enums;
 using MyTasker.Core.Models;
+using Plugin.LocalNotification;
 using System.Text.Json;
 
 namespace MyTasker.Mobile.ViewModel
@@ -49,7 +51,23 @@ namespace MyTasker.Mobile.ViewModel
             if (result == null || !bool.Parse(result))
                 message = "Task don't save!";
             else
+            {
                 message = "Task saved!";
+
+                var request = new NotificationRequest
+                {
+                    NotificationId = 1000 + model.Id,
+                    Title = "My Tasker",
+                    Subtitle = model.Title,
+                   Description = model.Content,
+                    BadgeNumber = 42,
+                    Schedule = new NotificationRequestSchedule
+                    {
+                        NotifyTime = model.TaskDate,
+                    }
+                };
+                LocalNotificationCenter.Current.Show(request);
+            }
 
             SemanticScreenReader.Announce(message);
             var toast = Toast.Make(message, CommunityToolkit.Maui.Core.ToastDuration.Long, 20);
